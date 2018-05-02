@@ -24,11 +24,6 @@ namespace WeinerSales.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _db = db;
-
-            //if (!_db.Roles.Any(r => r.Name == "SalesAssociate"))
-            //    _db.Roles.Add(new IdentityRole() { Name = "SalesAssociate" });
-            //if (!_db.Roles.Any(r => r.Name == "Manager"))
-            //    _db.Roles.Add(new IdentityRole() { Name = "Manager" });
         }
         
         public IActionResult Index()
@@ -38,8 +33,7 @@ namespace WeinerSales.Controllers
 
         public IActionResult Register()
         {
-            var list = _db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
-            ViewBag.Roles = list;
+            ViewBag.Roles = _db.Roles.ToList();
             return View();
         }
 
@@ -47,7 +41,29 @@ namespace WeinerSales.Controllers
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             AppUser user = new AppUser { UserName = model.UserName, Email = model.Email };
+            user.Roles.Add(new IdentityUserRole<string> { RoleId = Request.Form["role"] });
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+            _db.SaveChanges();
+            
+            
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+                
+            else
+                return View();
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
             if (result.Succeeded)
                 return RedirectToAction("Index");
             else

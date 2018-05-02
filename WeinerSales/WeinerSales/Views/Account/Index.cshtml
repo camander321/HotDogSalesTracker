@@ -4,8 +4,9 @@
 }
 @using System.Security.Claims
 
-<h2>Authentication with Identity</h2>
-<hr />
+<h2>Welcome to WeinerSales</h2>
+<h3>a hotdog POS for Web 3.0</h3>
+
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -17,6 +18,13 @@
 }
 else
 {
-    <p>@Html.ActionLink("Register", "Register")</p>
-    <p>@Html.ActionLink("Log in", "Login")</p>
+    <br />
+    <br />
+    <div class="btn-lg btn btn-danger">@Html.ActionLink("Register", "Register")</div>
+    <br />
+    <br />
+    <div class="btn-lg btn btn-success">@Html.ActionLink("Log in", "Login")</div>
+    <br />
+    <br />
+    <br />
 }

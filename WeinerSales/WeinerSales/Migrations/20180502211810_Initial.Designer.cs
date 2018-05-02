@@ -8,7 +8,7 @@ using WeinerSales.Models;
 namespace WeinerSales.Migrations
 {
     [DbContext(typeof(WeinerDbContext))]
-    [Migration("20180502174337_Initial")]
+    [Migration("20180502211810_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
