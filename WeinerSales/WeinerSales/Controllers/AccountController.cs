@@ -47,12 +47,10 @@ namespace WeinerSales.Controllers
             
             
             if (result.Succeeded)
-            {
                 return RedirectToAction("Index");
-            }
                 
             else
-                return View();
+                return RedirectToAction("Register");
         }
 
         public IActionResult Login()
@@ -68,6 +66,13 @@ namespace WeinerSales.Controllers
                 return RedirectToAction("Index");
             else
                 return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LogOff()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index");
         }
     }
 }

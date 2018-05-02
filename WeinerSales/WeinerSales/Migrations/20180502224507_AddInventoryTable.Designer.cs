@@ -8,9 +8,10 @@ using WeinerSales.Models;
 namespace WeinerSales.Migrations
 {
     [DbContext(typeof(WeinerDbContext))]
-    partial class WeinerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180502224507_AddInventoryTable")]
+    partial class AddInventoryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.5");

@@ -14,7 +14,8 @@ namespace WeinerSales.Models
     public class WeinerDbContext : IdentityDbContext<AppUser>
     {
         public virtual DbSet<Sale> Sale { get; set; }
-    
+        public virtual DbSet<Item> Item { get; set; }
+
 
 
 

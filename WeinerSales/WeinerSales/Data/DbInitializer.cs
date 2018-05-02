@@ -24,11 +24,22 @@ namespace WeinerSales.Data
 
             };
 
+            var items = new Item[]
+            {
+                new Item() { Name = "Bun", Cost = 1, Amount = 100 },
+                new Item() { Name = "Weiner", Cost = 2, Amount = 100}
+            };
+
 
 
             foreach (var r in roles)
             {
                 context.Roles.Add(r);
+            }
+
+            foreach (var i in items)
+            {
+                context.Item.Add(i);
             }
 
 
