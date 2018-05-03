@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using WeinerSales.Models;
 using WeinerSales.ViewModels;
 using WeinerSales.Data;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace WeinerSales.Controllers
 {
@@ -68,11 +68,17 @@ namespace WeinerSales.Controllers
                 return View();
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         public async Task<IActionResult> LogOff()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index");
+        }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }
