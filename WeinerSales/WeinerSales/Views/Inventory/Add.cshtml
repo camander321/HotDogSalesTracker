@@ -1,0 +1,21 @@
+
+@{
+    ViewData["Title"] = "Add Stock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br>
+<h2>Add Stock to a New Inventory Item</h2>
+<br />
+<form action='../AddConfirmed/@ViewBag.id' method="post">
+    <div class="row">
+        <label for="name">Amount:</label>
+        <input type="number" name="amount" id="amount" />
+    </div>
+    <br />
+    <br />
+
+    <input type="submit" value="Add" class="btn-lg btn-success" />
+</form>
+
+

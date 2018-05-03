@@ -13,12 +13,8 @@ namespace WeinerSales.Models
 
     public class WeinerDbContext : IdentityDbContext<AppUser>
     {
-        public virtual DbSet<Sale> Sale { get; set; }
-        public virtual DbSet<Item> Item { get; set; }
-
-
-
-
+        public virtual DbSet<Sale> Sales { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

@@ -1,0 +1,30 @@
+
+@{
+    ViewData["Title"] = "Add Inventory Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using WeinerSales.Models
+@model Item
+
+<br>
+<h2>Add a New Inventory Item</h2>
+<br />
+@using (Html.BeginForm("New", "Inventory", FormMethod.Post))
+{
+    <div class="row">
+        @Html.LabelFor(item => item.Name)
+        @Html.TextBoxFor(item => item.Name)
+    </div>
+    <br />
+    <div class="row">
+        @Html.LabelFor(item => item.Cost)
+        @Html.EditorFor(item => item.Cost)
+    </div>
+    <br />
+    <br />
+
+    <input type="submit" value="Add" class="btn-lg btn-success" />
+}
+
+

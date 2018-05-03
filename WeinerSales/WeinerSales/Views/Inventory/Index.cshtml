@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Security.Claims
+<div class="inventory">
+    @if (User.IsInRole("Manager"))
+    {
+        @Html.ActionLink("Add A New Item", "New")
+    }
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Cost</th>
+            <th>Stock</th>
+            @if (User.IsInRole("Manager"))
+            {
+                <th>Manager Actions</th>}
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>$ @item.Cost</td>
+                <td>@item.Amount Left</td>
+                @if (User.IsInRole("Manager"))
+                {
+                    <td>
+                        @Html.ActionLink("Add", "Add", new { id = item.ItemId })
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+</div>

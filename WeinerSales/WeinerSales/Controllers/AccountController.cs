@@ -68,7 +68,7 @@ namespace WeinerSales.Controllers
                 return View();
         }
 
-        [Authorize(Roles = "Manager")]
+        
         [HttpPost]
         public async Task<IActionResult> LogOff()
         {
@@ -76,8 +76,8 @@ namespace WeinerSales.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult AccessDenied()
-        {
+        public IActionResult AccessDenied(string ReturnUrl)
+        { // Account/LogOff
             return View();
         }
     }

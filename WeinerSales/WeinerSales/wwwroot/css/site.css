@@ -63,6 +63,14 @@ a.black {
     filter: grayscale(100%);
 }
 
+.inventory {
+    margin-top: 3em;
+}
+
+.inventory {
+    list-style: none;
+    font-size: 2em;
+}
 
 
 

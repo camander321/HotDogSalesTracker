@@ -39,7 +39,7 @@ namespace WeinerSales.Data
 
             foreach (var i in items)
             {
-                context.Item.Add(i);
+                context.Items.Add(i);
             }
 
 
