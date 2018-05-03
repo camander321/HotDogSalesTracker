@@ -82,5 +82,12 @@ namespace WeinerSales.Controllers
         {
             return View();
         }
+
+
+        //Ajax call is made in the controller here
+        public IActionResult HelloAjax()
+        {
+            return Json(_db.Items.ToList());
+        }
     }
 }

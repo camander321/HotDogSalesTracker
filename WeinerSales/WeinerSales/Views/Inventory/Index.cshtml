@@ -7,6 +7,11 @@
     @if (User.IsInRole("Manager"))
     {
         @Html.ActionLink("Add A New Item", "New")
+        <form id="stock-form" >
+            <label for="amount" id="stock-label"></label>
+            <input type="number" id="amount" value="0" />
+            <button type="submit">Go!</button>
+        </form>
     }
     <table class="table">
         <tr>
@@ -17,22 +22,30 @@
             {
                 <th>Manager Actions</th>}
         </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Name</td>
-                <td>$ @item.Cost</td>
-                <td>@item.Amount Left</td>
-                @if (User.IsInRole("Manager"))
-                {
-                <td>
-                    @Html.ActionLink("Add Stock", "Add", new { id = item.ItemId }) |
-                    @Html.ActionLink("Remove Item", "Delete", new { id = item.ItemId }) |
-                </td>
-                }
-            </tr>
-        }
+        <tbody class="tbody"></tbody>
 
     </table>
 </div>
+
+<script>
+
+    //ajax call 
+    $.ajax({
+        type: 'GET',
+        url: '@Url.Action("HelloAjax")', success: function (result) {
+            result.forEach(function (item) {
+                $(".tbody").append(
+                    "<tr>" + 
+                    "<td>" + item.name + "</td>" + 
+                    "<td>" + item.cost + "</td>" + 
+                    "<td>" + item.amount + "</td>" +
+                    "<td>" +
+                    "<a href='Inventory/Add/" + item.itemId + "'>Add Stock</a> | " +
+                    "<a href='Inventory/Delete/" + item.itemId + "'>Delete</a>" +
+                    "</td>" +
+                    "</tr>"
+                )
+            })
+        }
+    });
+</script>
