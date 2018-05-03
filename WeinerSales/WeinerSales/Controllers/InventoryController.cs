@@ -65,6 +65,13 @@ namespace WeinerSales.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Manager")]
+        public IActionResult Delete(int id)
+        {
+            _db.Items.Remove(_db.Items.FirstOrDefault(i => i.ItemId == id));
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         public IActionResult Sale()
         {

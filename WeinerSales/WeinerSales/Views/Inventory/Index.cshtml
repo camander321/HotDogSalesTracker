@@ -26,9 +26,10 @@
                 <td>@item.Amount Left</td>
                 @if (User.IsInRole("Manager"))
                 {
-                    <td>
-                        @Html.ActionLink("Add", "Add", new { id = item.ItemId })
-                    </td>
+                <td>
+                    @Html.ActionLink("Add Stock", "Add", new { id = item.ItemId }) |
+                    @Html.ActionLink("Remove Item", "Delete", new { id = item.ItemId }) |
+                </td>
                 }
             </tr>
         }
